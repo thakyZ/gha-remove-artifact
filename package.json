@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "description": "Github Action for deleting artifacts",
-  "main": "lib/main.js",
+  "main": "lib/index.js",
   "scripts": {
     "build": "tsc",
     "format": "prettier --write **/*.ts",

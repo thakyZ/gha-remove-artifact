@@ -1,11 +1,20 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: Delete Artifacts
+description: Github Action for deleting artifacts
+author: Joonmo Yang
 inputs:
-  milliseconds: # change this
+  GITHUB_TOKEN:
+    description: Access token for the repository.
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+    default: ${{ github.token }}
+  filter-name:
+    description: Regex for filtering artifacts by name.
+    required: false
+  max-count:
+    description: Maximum number of artifacts to keep.
+    required: false
+  max-age:
+    description: Maximum age(by seconds) of artifacts to keep.
+    required: false
 runs:
   using: 'node12'
-  main: 'dist/index.js'
+  main: 'build/index.js'
