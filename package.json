@@ -24,7 +24,7 @@
   "author": "Joonmo Yang <dev@remagpie.com>",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.2.6",
+    "@actions/core": "^1.2.7",
     "@actions/github": "^4.0.0",
     "@octokit/plugin-throttling": "^3.4.1",
     "dayjs": "^1.10.4"
