@@ -15,8 +15,11 @@ This action automatically deletes the artifacts in the repository by rules speci
 
 Following input arguments are used by this action.
 
-### `filter-name` (optional)
-Regex for filtering artifacts by name.
+### `only-name` (optional)
+Exact string for filtering artifacts by name.
+
+### `regex-name` (optional)
+Regex for filtering artifacts by name. If both `only-name` and `regex-name` is specified, `only-name` takes precedence.
 
 ### `max-count` (optional)
 Number of artifacts to keep. If filter arguments are specified, only the artifacts matched by the filters are taken into account.
@@ -31,7 +34,7 @@ Maximum age(by seconds) of artifacts to keep. For example, `3600` should be used
 ```yaml
 - uses: Remagpie/gha-delete-artifacts@v1
   with:
-    filter-name: '^foo$'
+    only-name: 'foo'
     max-count: 3
 ```
 
@@ -43,11 +46,11 @@ Maximum age(by seconds) of artifacts to keep. For example, `3600` should be used
     max-age: 604800 # 7 * 24 * 60 * 60
 ```
 
-### Deleting all artifacts with name `bar` by count **and** age
+### Deleting all artifacts starting with `bar` by count and age
 
 ```yaml
 - uses: Remagpie/gha-delete-artifacts@v1
   with:
-    filter-name: '^foo$'
+    regex-name: '^bar'
     max-age: 604800 # 7 * 24 * 60 * 60
 ```

@@ -6,7 +6,10 @@ inputs:
     description: Access token for the repository.
     required: true
     default: ${{ github.token }}
-  filter-name:
+  only-name:
+    description: Exact string for filtering artifacts by name.
+    required: false
+  regex-name:
     description: Regex for filtering artifacts by name.
     required: false
   max-count:

@@ -10,9 +10,11 @@ export default async function run() {
 	const now = dayjs();
 
 	// Parse input parameters
-	let nameFilter: RegExp | undefined;
-	if (core.getInput("filter-name") !== "") {
-		nameFilter = new RegExp(core.getInput("filter-name"));
+	let nameFilter: RegExp | string | undefined;
+	if (core.getInput("only-name") !== "") {
+		nameFilter = core.getInput("only-name");
+	} else if (core.getInput("regex-name") !== "") {
+		nameFilter = new RegExp(core.getInput("regex-name"));
 	}
 	let maxCount: number | undefined;
 	if (core.getInput("max-count") !== "") {
@@ -40,7 +42,11 @@ export default async function run() {
 		console.log("  Nothing");
 	}
 	if (nameFilter != null) {
-		console.log("  Name filter   - " + nameFilter.toString());
+		if (nameFilter instanceof RegExp) {
+			console.log("  Name(regex)   - " + nameFilter.toString());
+		} else {
+			console.log("  Name(exact)   - " + nameFilter);
+		}
 	}
 	if (maxCount != null) {
 		console.log("  Maximum count - " + maxCount.toString());
@@ -85,8 +91,13 @@ export default async function run() {
 			continue;
 		}
 
-		if (nameFilter != null && !nameFilter.test(artifact.name)) {
-			continue;
+		if (nameFilter != null) {
+			if (nameFilter instanceof RegExp && nameFilter.test(artifact.name)) {
+				continue;
+			}
+			if (typeof nameFilter === "string" && artifact.name === nameFilter) {
+				continue;
+			}
 		}
 
 		filtered.push(artifact);
