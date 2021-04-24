@@ -1,8 +1,8 @@
 {
-  "name": "typescript-action",
-  "version": "0.0.0",
+  "name": "gha-delete-artifacts",
+  "version": "0.1.0",
   "private": true,
-  "description": "TypeScript template action",
+  "description": "Github Action for deleting artifacts",
   "main": "lib/main.js",
   "scripts": {
     "build": "tsc",
@@ -15,14 +15,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions/typescript-action.git"
+    "url": "git+https://github.com/Remagpie/gha-delete-artifacts.git"
   },
   "keywords": [
     "actions",
-    "node",
-    "setup"
+    "node"
   ],
-  "author": "",
+  "author": "Joonmo Yang <dev@remagpie.com>",
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.2.6"
