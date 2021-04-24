@@ -88,23 +88,30 @@ export default async function run() {
 		if (nameFilter != null && !nameFilter.test(artifact.name)) {
 			continue;
 		}
-		if (maxAge != null && now.unix() - dayjs(artifact.created_at).unix() > maxAge) {
-			continue;
-		}
 
 		filtered.push(artifact);
 	}
 
+	// Filter artifact by age
+	const truncated: typeof filtered = [];
+	for (const artifact of filtered) {
+		if (maxAge != null && now.unix() - dayjs(artifact.created_at).unix() > maxAge) {
+			continue;
+		}
+
+		truncated.push(artifact);
+	}
+
 	// Sort artifacts by created_at
-	const mapped = filtered.map(a => ({...a, created_at: dayjs(a.created_at)}));
+	const mapped = truncated.map(a => ({...a, created_at: dayjs(a.created_at)}));
 	mapped.sort((a, b) => b.created_at.valueOf() - a.created_at.valueOf());
 
 	// Truncate by max-count
 	const result = mapped.slice(0, maxCount);
 
-	// Remove all filtered artifacts
+	// Remove all target artifacts
 	const idSet = new Set(result.map(a => a.id));
-	for (const artifact of artifactList.artifacts) {
+	for (const artifact of filtered) {
 		if (!idSet.has(artifact.id)) {
 			await octokit.actions.deleteArtifact({
 				...github.context.repo,
