@@ -86,7 +86,7 @@ export default async function run() {
 
 	// Filter artifacts by rules
 	const filtered: typeof artifactList.artifacts = [];
-	for (const artifact of artifactList.artifacts) {
+	for (const artifact of artifactList) {
 		if (artifact.expired) {
 			continue;
 		}
