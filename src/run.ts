@@ -124,10 +124,13 @@ export default async function run() {
 	const idSet = new Set(result.map(a => a.id));
 	for (const artifact of filtered) {
 		if (!idSet.has(artifact.id)) {
+			console.log(`Deleting artifact ${artifact.name} (#${artifact.id})`);
 			await octokit.actions.deleteArtifact({
 				...github.context.repo,
 				artifact_id: artifact.id
 			});
+		} else {
+			console.log(`Keeping artifact ${artifact.name} (#${artifact.id})`);
 		}
 	}
 }
