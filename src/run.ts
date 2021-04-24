@@ -92,10 +92,10 @@ export default async function run() {
 		}
 
 		if (nameFilter != null) {
-			if (nameFilter instanceof RegExp && nameFilter.test(artifact.name)) {
+			if (nameFilter instanceof RegExp && !nameFilter.test(artifact.name)) {
 				continue;
 			}
-			if (typeof nameFilter === "string" && artifact.name === nameFilter) {
+			if (typeof nameFilter === "string" && artifact.name !== nameFilter) {
 				continue;
 			}
 		}
