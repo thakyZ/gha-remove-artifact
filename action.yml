@@ -1,5 +1,5 @@
-name: Delete Artifacts
-description: Github Action for deleting artifacts
+name: Remove Artifact
+description: Github Action for removing artifacts
 author: Joonmo Yang
 inputs:
   GITHUB_TOKEN:
@@ -21,3 +21,6 @@ inputs:
 runs:
   using: 'node12'
   main: 'build/index.js'
+branding:
+  icon: 'trash-2'
+  color: 'orange'

@@ -1,8 +1,8 @@
 {
-  "name": "gha-delete-artifacts",
+  "name": "gha-remove-artifact",
   "version": "0.1.0",
   "private": true,
-  "description": "Github Action for deleting artifacts",
+  "description": "Github Action for removing artifacts",
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Remagpie/gha-delete-artifacts.git"
+    "url": "git+https://github.com/Remagpie/gha-remove-artifact.git"
   },
   "keywords": [
     "actions",
